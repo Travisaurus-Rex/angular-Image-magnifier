@@ -1,0 +1,20 @@
+<div class="image-mag-container clean">
+  <img #thumbnail class="thumb clean" [src]="imgThumb" [alt]="alt" (mouseenter)="toggleIsMagnifying()"
+    (mousemove)="onMouseMove($event)" (mouseout)="toggleIsMagnifying()" [ngStyle]="{
+      'width': thumbSize ? thumbSize.width : 'auto',
+      'height': thumbSize ? thumbSize.height : 'auto'}" />
+  <div *ngIf="isMagnifying" class="lens clean" [ngStyle]="{
+    'top': lensYPos + 'px',
+    'left': lensXPos + 'px',
+    'width': lensSize + 'px',
+    'height': lensSize + 'px'}">
+  </div>
+  <div *ngIf="isMagnifying" class="magnify-box clean" [ngStyle]="{
+    'width': magBoxSize + 'px',
+    'height': magBoxSize + 'px',
+    'backgroundImage': getBackgroundImage(),
+    'backgroundPosition': getBackgroundPos(),
+    'backgroundSize': getBackgroundSize(),
+    'top': top ? top : '-50%'}">
+  </div>
+</div>

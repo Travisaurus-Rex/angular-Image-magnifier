@@ -1,0 +1,39 @@
+.clean {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.image-mag-container {
+  position: relative;
+  display: inline-block;
+}
+
+.thumb {
+  position: relative;
+  border: 1px dashed transparent;
+  outline: none;
+}
+
+.lens {
+  background: rgba(69, 97, 255, 0.4);
+  position: fixed;
+  pointer-events: none;
+}
+
+.magnify-box {
+  position: absolute;
+  overflow: hidden;
+  left: 110%;
+  background-color: white;
+  background-repeat: no-repeat;
+  box-shadow: 0 3px 10px #707070;
+  z-index: 999;
+}
+
+@media screen and (min-width: 762px) {
+  .thumb:hover {
+    transition: all 150ms ease;
+    border: 1px dashed blue;
+  }
+}
