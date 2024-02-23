@@ -17,7 +17,6 @@ export class NgxImageMagnifierComponent implements OnInit {
   @Input() magnifiedSize: number = 500;
   @Input() thumbSize: { width: string; height: string };
   @Input() alt: string = 'Web friendly image!';
-  @Input() top: string;
   @Input() allowHover: boolean = true; // for touch screens?
 
   isMagnifying: boolean = false;
