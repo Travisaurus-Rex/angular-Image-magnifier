@@ -4,14 +4,14 @@
       'width': thumbSize ? thumbSize.width : 'auto',
       'height': thumbSize ? thumbSize.height : 'auto'}" />
   <div *ngIf="isMagnifying" class="lens clean" [ngStyle]="{
-    'top': lensYPos + 'px',
-    'left': lensXPos + 'px',
+    'top': lensPositionY + 'px',
+    'left': lensPositionX + 'px',
     'width': lensSize + 'px',
     'height': lensSize + 'px'}">
   </div>
   <div *ngIf="isMagnifying" class="magnify-box clean" [ngStyle]="{
-    'width': magBoxSize + 'px',
-    'height': magBoxSize + 'px',
+    'width': magnifiedSize + 'px',
+    'height': magnifiedSize + 'px',
     'backgroundImage': getBackgroundImage(),
     'backgroundPosition': getBackgroundPos(),
     'backgroundSize': getBackgroundSize(),

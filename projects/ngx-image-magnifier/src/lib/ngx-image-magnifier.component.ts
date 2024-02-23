@@ -14,27 +14,23 @@ export class NgxImageMagnifierComponent implements OnInit {
   @Input() imgThumb: string;
   @Input() imgLarge: string;
   @Input() lensSize: number = 100;
-  @Input() magBoxSize: number = 500;
+  @Input() magnifiedSize: number = 500;
   @Input() thumbSize: { width: string; height: string };
   @Input() alt: string = 'Web friendly image!';
   @Input() top: string;
-  @Input() offsetMenu: boolean;
-  @Input() allowHover: boolean = true;
-  @Input() isMobile: boolean;
+  @Input() allowHover: boolean = true; // for touch screens?
 
   isMagnifying: boolean = false;
-  lensXPos: number;
-  lensYPos: number;
+  lensPositionX: number;
+  lensPositionY: number;
 
   private lensSizeRadius: number;
-  private magXPos: number;
-  private magYPos: number;
+  private magnifiedPositionX: number;
+  private magnifiedPositionY: number;
   private ratio: number;
   private thumbBox: DOMRect;
   private backgroundWidth: number;
   private backgroundHeight: number;
-  private menuWidth: number = 300;
-
   private allowBackroundYMovement: boolean = true;
   private allowBackgroundXMovement: boolean = true;
 
@@ -67,7 +63,7 @@ export class NgxImageMagnifierComponent implements OnInit {
   }
 
   getBackgroundPos(): string {
-    return `${this.magXPos}px ${this.magYPos}px`;
+    return `${this.magnifiedPositionX}px ${this.magnifiedPositionY}px`;
   }
 
   private correctLensPos(): void {
@@ -75,17 +71,12 @@ export class NgxImageMagnifierComponent implements OnInit {
   }
 
   private setRatio(): void {
-    this.ratio = this.magBoxSize / this.lensSize;
+    this.ratio = this.magnifiedSize / this.lensSize;
   }
 
   private moveLens(event: MouseEvent): void {
-    this.lensXPos = event.clientX - this.lensSizeRadius;
-    this.lensYPos = event.clientY - this.lensSizeRadius;
-
-    if (this.offsetMenu) {
-      this.lensXPos -= this.menuWidth;
-    }
-
+    this.lensPositionX = event.clientX - this.lensSizeRadius;
+    this.lensPositionY = event.clientY - this.lensSizeRadius;
     this.preventOutOfBounds(event);
   }
 
@@ -111,8 +102,8 @@ export class NgxImageMagnifierComponent implements OnInit {
   }
 
   private outOfBoundsLeft(boxLeft: number): boolean {
-    if (this.lensXPos < boxLeft) {
-      this.lensXPos = boxLeft;
+    if (this.lensPositionX < boxLeft) {
+      this.lensPositionX = boxLeft;
       return true;
     }
 
@@ -120,8 +111,8 @@ export class NgxImageMagnifierComponent implements OnInit {
   }
 
   private outOfBoundsRight(boxRight: number): boolean {
-    if (this.lensXPos + this.lensSize > boxRight) {
-      this.lensXPos = boxRight - this.lensSize;
+    if (this.lensPositionX + this.lensSize > boxRight) {
+      this.lensPositionX = boxRight - this.lensSize;
       return true;
     }
 
@@ -129,8 +120,8 @@ export class NgxImageMagnifierComponent implements OnInit {
   }
 
   private outOfBoundsTop(boxTop: number): boolean {
-    if (this.lensYPos < boxTop) {
-      this.lensYPos = boxTop;
+    if (this.lensPositionY < boxTop) {
+      this.lensPositionY = boxTop;
       return true;
     }
 
@@ -138,8 +129,8 @@ export class NgxImageMagnifierComponent implements OnInit {
   }
 
   private outOfBoundsBottom(boxBottom: number): boolean {
-    if (this.lensYPos + this.lensSize > boxBottom) {
-      this.lensYPos = boxBottom - this.lensSize;
+    if (this.lensPositionY + this.lensSize > boxBottom) {
+      this.lensPositionY = boxBottom - this.lensSize;
       return true;
     }
 
@@ -153,11 +144,11 @@ export class NgxImageMagnifierComponent implements OnInit {
 
   private setBackgroundPos(event: MouseEvent): void {
     if (this.allowBackgroundXMovement) {
-      this.magXPos = -((event.offsetX - this.lensSizeRadius) * this.ratio);
+      this.magnifiedPositionX = -((event.offsetX - this.lensSizeRadius) * this.ratio);
     }
 
     if (this.allowBackroundYMovement) {
-      this.magYPos = -((event.offsetY - this.lensSizeRadius) * this.ratio);
+      this.magnifiedPositionY = -((event.offsetY - this.lensSizeRadius) * this.ratio);
     }
   }
 }
