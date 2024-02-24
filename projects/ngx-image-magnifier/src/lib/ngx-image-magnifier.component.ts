@@ -85,17 +85,8 @@ export class NgxImageMagnifierComponent implements OnInit {
     const top = this.thumbBox.top;
     const bottom = this.thumbBox.bottom;
 
-    if (this.outOfBoundsLeft(left) || this.outOfBoundsRight(right)) {
-      this.allowBackgroundXMovement = false;
-    } else {
-      this.allowBackgroundXMovement = true;
-    }
-
-    if (this.outOfBoundsTop(top) || this.outOfBoundsBottom(bottom)) {
-      this.allowBackroundYMovement = false;
-    } else {
-      this.allowBackroundYMovement = true;
-    }
+    this.allowBackgroundXMovement = !(this.outOfBoundsLeft(left) || this.outOfBoundsRight(right));
+    this.allowBackroundYMovement = !(this.outOfBoundsTop(top) || this.outOfBoundsBottom(bottom));
 
     this.setBackgroundPos(event);
   }
