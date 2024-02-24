@@ -134,11 +134,15 @@ export class NgxImageMagnifierComponent implements OnInit {
 
   private setBackgroundPos(event: MouseEvent): void {
     if (this.allowBackgroundXMovement) {
-      this.magnifiedPositionX = -((event.offsetX - this.lensSizeRadius) * this.ratio);
+      this.magnifiedPositionX = this.calculateMagnifiedPosition(event.offsetX);
     }
 
     if (this.allowBackroundYMovement) {
-      this.magnifiedPositionY = -((event.offsetY - this.lensSizeRadius) * this.ratio);
+      this.magnifiedPositionY = this.calculateMagnifiedPosition(event.offsetY);
     }
+  }
+
+  private calculateMagnifiedPosition(offset: number): number {
+    return -((offset - this.lensSizeRadius) * this.ratio);
   }
 }
