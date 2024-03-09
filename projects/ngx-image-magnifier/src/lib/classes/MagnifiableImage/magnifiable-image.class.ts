@@ -1,9 +1,10 @@
 import { TwoDimensionable } from "../TwoDimensionable/two-dimensionable.class";
+import { IMagnifiableImage } from "./interfaces/magnifiable-image.interface";
 
-export class MagnifiableImage extends TwoDimensionable {
+export class MagnifiableImage extends TwoDimensionable implements IMagnifiableImage {
 
   // source image
-  protected src: string = '';
+  public src: string = '';
 
   
   private _source: string;
