@@ -9,7 +9,7 @@ import { Component, OnInit, ViewChild, Input, ElementRef } from '@angular/core';
   styleUrls: ['./ngx-image-magnifier.component.css']
 })
 export class NgxImageMagnifierComponent implements OnInit {
-  @ViewChild('thumbnail') thumbnailRef: ElementRef;
+  @ViewChild('thumbnail') thumbnailRef: ElementRef<HTMLImageElement>;
 
   @Input() imgThumb: string;
   @Input() imgLarge: string;
@@ -19,9 +19,9 @@ export class NgxImageMagnifierComponent implements OnInit {
   @Input() alt: string = 'Web friendly image!';
   @Input() allowHover: boolean = true; // for touch screens?
 
-  isMagnifying: boolean = false;
-  lensPositionX: number;
-  lensPositionY: number;
+  protected isMagnifying: boolean = false;
+  protected lensPositionX: number;
+  protected lensPositionY: number;
 
   private lensSizeRadius: number;
   private magnifiedPositionX: number;
@@ -41,7 +41,7 @@ export class NgxImageMagnifierComponent implements OnInit {
   }
 
   onMouseMove(event: MouseEvent): void {
-    this.thumbBox = this.thumbnailRef.nativeElement.getBoundingDOMRect();
+    this.thumbBox = this.thumbnailRef.nativeElement.getBoundingClientRect();
 
     this.moveLens(event);
     this.setBackgroundSize(this.thumbBox);
@@ -54,7 +54,8 @@ export class NgxImageMagnifierComponent implements OnInit {
   }
 
   getBackgroundImage(): string {
-    return `url(${this.imgLarge})`;
+    const image: string = this.imgLarge ?? this.imgThumb;
+    return `url(${image})`;
   }
 
   getBackgroundSize(): string {

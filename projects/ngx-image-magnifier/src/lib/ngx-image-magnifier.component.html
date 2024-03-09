@@ -1,4 +1,4 @@
-<div class="image-mag-container clean">
+<div class="container">
   <img #thumbnail class="thumb clean" [src]="imgThumb" [alt]="alt" (mouseenter)="toggleIsMagnifying()"
     (mousemove)="onMouseMove($event)" (mouseout)="toggleIsMagnifying()" [ngStyle]="{
       'width': thumbSize ? thumbSize.width : 'auto',
