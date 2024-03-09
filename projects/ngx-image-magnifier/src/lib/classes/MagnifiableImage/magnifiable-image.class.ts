@@ -4,7 +4,6 @@ import { IMagnifiableImage } from "./interfaces/magnifiable-image.interface";
 export class MagnifiableImage extends TwoDimensionable implements IMagnifiableImage {
 
   // source image
-  public src: string = '';
 
   
   private _source: string;
@@ -12,7 +11,7 @@ export class MagnifiableImage extends TwoDimensionable implements IMagnifiableIm
   constructor(src: string = '') {
     super();
 
-    this.src = src;
+    this.source = src;
   }
 
   set source(val: string ) {

@@ -1,3 +1,3 @@
 export interface IMagnifiableImage {
-  src: string
+  source: string
 }
