@@ -1,4 +1,10 @@
-# NgImageMagnifier
-Angular Image Magnifier component
+# Angular Image Magnifier 🔍
 
-> projects/ngx-image-magnifier
+A lightweight Angular component that replicates the Amazon-style product image magnifier.  
+Built with Angular and TypeScript.
+
+## Demo
+Run locally:
+```bash
+npm install
+ng serve
